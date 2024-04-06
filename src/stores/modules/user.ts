@@ -2,9 +2,7 @@ import { defineStore } from "pinia";
 
 import { reqLogin, reqLogout, reqUserInfo } from "@/api/user";
 import type { loginformData, loginResponseData, userInfoResponseData } from "@/api/user/type";
-import type { UserState } from "./types/type";
 import { constantRoute, asnycRoute, anyRoute } from '@/router/routes'
-import { ElMessage } from "element-plus";
 import cloneDeep from 'lodash/cloneDeep'
 function filterAsyncRoute(asnycRoute: any, routes: any) {
     return asnycRoute.filter((item: any) => {
@@ -64,7 +62,6 @@ let useUserStore = defineStore('user', {
             } else{
                  return Promise.reject(new Error(res.message))
             }
-            console.log(res)
         },
         
        async userLogout() { 

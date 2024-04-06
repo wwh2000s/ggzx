@@ -27,6 +27,9 @@ import { ref, reactive } from 'vue';
 import useUserStore from '@/stores/modules/user'
 
 import { ElMessage } from 'element-plus';
+import { reqLogin } from '@/api/user';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 let useStore = useUserStore();
 let loginForm = reactive({
     username: 'admin',
@@ -42,13 +45,20 @@ let rules = {
         { min: 3, max: 10, message: '密码长度为3到0', trigger: 'blur' },
     ]
 }
+let token = ref('')
 let loginForms = ref();
 const login = async () => {
     await loginForms.value.validate(async (value:boolean) => {
         if (value) {
             try {
-                await useStore.userLogin(loginForm);
-               
+                // await useStore.userLogin(loginForm); 
+                const res = await reqLogin(loginForm)  
+                if (res.code == 200) {
+                    token.value = (res.data as string)
+                    localStorage.setItem('TOKEN', (res.data as string))
+                    router.push('/home')  
+                }         
+                console.log(res)   
                 ElMessage({
                     type: 'success',
                     message: '登陆成功'
