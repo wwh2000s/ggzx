@@ -5,7 +5,8 @@ import useUserStore from "@/stores/modules/user";
 //创建axios实例
 let request = axios.create({
     // baseURL: 'http://127.0.0.1:8000/api',
-    baseURL: 'http://localhost:5173/api/',
+    // baseURL: 'http://localhost:5173/api/',
+    baseURL:'http://sph-api.atguigu.cn', 
     timeout: 5000
 })
 //请求拦截器
