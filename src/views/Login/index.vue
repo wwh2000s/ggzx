@@ -25,11 +25,8 @@
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref, reactive } from 'vue';
 import useUserStore from '@/stores/modules/user'
-import { useRoute, useRouter } from 'vue-router';
 
 import { ElMessage } from 'element-plus';
-let route = useRoute()
-let router = useRouter();
 let useStore = useUserStore();
 let loginForm = reactive({
     username: 'admin',
